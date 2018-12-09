@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+<div class="container">
+  <h2>Benmack</h2>
+  <p>Contextual classes can be used to color table rows or table cells. The classes that can be used are: .active, .success, .info, .warning, and .danger.</p>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col"> MySQL</th>
+        <th scope="col">MongoDB</th>
+        <th scope="col" ></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Tìm kiếm một bản ghi</td>
+        <td></td>
+        <td></td>
+        <td><button id ="compare" name="button" class="btn btn-info" value="1" type="button">So sánh </button> </td>
+      </tr>   
+      <tr>
+        <td>Chọn tất cả bản ghi</td>
+        <td></td>
+        <td></td>
+        <td><button id ="compare" class="btn btn-info"  value="2" type="button">So sánh </button> </td>
+      </tr>
+      <tr >
+        <td>Cập nhật một bản ghir</td>
+        <td></td>
+        <td></td>
+        <td><button id ="compare"   class="btn btn-info" value="3" type="button">So sánh </button> </td>
+      </tr>
+      <tr >
+        <td>Cập nhật nhiều bản ghi</td>
+        <td></td>
+        <td></td>
+        <td><button id ="compare"   class="btn btn-info" value="4" type="button">So sánh </button> </td>
+      </tr>
+      <tr >
+        <td>Xóa một bản ghi</td>
+        <td></td>
+        <td></td>
+        <td><button id ="compare"   class="btn btn-info" value="5"type="button">So sánh </button> </td>
+      </tr>
+      <tr >
+        <td>Xóa nhiều bản ghi</td>
+        <td></td>
+        <td></td>
+        <td><button id ="compare"   class="btn btn-info" value="6" type="button">So sánh </button> </td>
+
+      </tr>
+      <tr >
+        <td>Đếm số bản ghi</td>
+        <td></td>
+        <td></td>
+        <td><button id ="compare" name="button"  class="btn btn-info" value="7"type="button">So sánh </button> </td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+<script type="text/javascript">
+  $(document).on("click", "#compare", function (){
+console.log(this.value)
+let a =this.value;
+$.get("/mysql/"+this.value,function(s){
+console.log(s.message)
+    document.getElementsByClassName('table table-striped')[0].rows[a].cells[1].innerHTML=s.message
+
+
+
+})
+$.get("/mongo/"+this.value,function(s){
+    document.getElementsByClassName('table table-striped')[0].rows[a].cells[2].innerHTML=s.message
+
+
+
+})
+  })
+</script>
+</body>
+</html>
+
